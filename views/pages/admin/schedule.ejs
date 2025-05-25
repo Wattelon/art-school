@@ -1,0 +1,18 @@
+<%- include(partials + '/header') %>
+
+<h1>Редактировать расписание</h1>
+
+<form action="/admin/schedule" method="POST">
+    <% const days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
+    <% const labels = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']; %>
+    <% for (let i = 0; i < days.length; i++) { %>
+        <label><%= labels[i] %>:<br>
+            <textarea name="<%= days[i] %>" rows="3" cols="60"><%= schedule[days[i]] || '' %></textarea>
+        </label><br><br>
+    <% } %>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a href="/admin">← Назад</a>
+
+<%- include(partials + '/footer') %>

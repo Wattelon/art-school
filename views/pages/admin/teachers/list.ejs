@@ -1,0 +1,21 @@
+<%- include(partials + '/header') %>
+
+<h1>Педагоги</h1>
+<a href="/admin/teachers/add">➕ Добавить</a>
+
+<ul>
+    <% teachers.forEach(teacher => { %>
+        <li>
+            <strong><%= teacher.name %></strong><br>
+            <p><%= teacher.bio %></p>
+            <a href="/admin/teachers/edit/<%= teacher.id %>">✏️ Редактировать</a>
+            <form action="/admin/teachers/delete/<%= teacher.id %>" method="POST" style="display:inline">
+                <button type="submit" onclick="return confirm('Удалить?')">🗑️ Удалить</button>
+            </form>
+        </li>
+        <hr>
+    <% }) %>
+</ul>
+
+<a href="/admin">← Назад</a>
+<%- include(partials + '/footer') %>

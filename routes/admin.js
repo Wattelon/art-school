@@ -8,16 +8,16 @@ function isAdmin(req, res, next) {
 }
 
 router.get('/', isAdmin, (req, res) => {
-    res.render('admin/dashboard', { title: 'Админ-панель' });
+    res.render('pages/admin/index', { title: 'Админ-панель' });
 });
 
 router.get('/news', isAdmin, async (req, res) => {
     const [news] = await db.query('SELECT * FROM news ORDER BY created_at DESC');
-    res.render('admin/news-list', { title: 'Админка — Новости', news });
+    res.render('pages/admin/news/list', { title: 'Админка — Новости', news });
 });
 
 router.get('/news/add', isAdmin, (req, res) => {
-    res.render('admin/news-add', { title: 'Добавить новость' });
+    res.render('pages/admin/news/add', { title: 'Добавить новость' });
 });
 
 router.post('/news/add', isAdmin, async (req, res) => {
@@ -32,7 +32,7 @@ router.post('/news/add', isAdmin, async (req, res) => {
 router.get('/news/edit/:id', isAdmin, async (req, res) => {
     const [[news]] = await db.query('SELECT * FROM news WHERE id = ?', [req.params.id]);
     if (!news) return res.status(404).send('Новость не найдена');
-    res.render('admin/news-edit', { title: 'Редактировать новость', news });
+    res.render('pages/admin/news/edit', { title: 'Редактировать новость', news });
 });
 
 router.post('/news/edit/:id', isAdmin, async (req, res) => {
@@ -49,7 +49,7 @@ router.post('/news/delete/:id', isAdmin, async (req, res) => {
 router.get('/applications', isAdmin, async (req, res) => {
     try {
         const [applications] = await db.execute('SELECT * FROM applications ORDER BY submitted_at DESC');
-        res.render('admin/applications', { title: 'Заявки', applications });
+        res.render('pages/admin/applications', { title: 'Заявки', applications });
     } catch (err) {
         console.error(err);
         res.status(500).send('Ошибка при получении заявок');
@@ -58,11 +58,11 @@ router.get('/applications', isAdmin, async (req, res) => {
 
 router.get('/programs', isAdmin, async (req, res) => {
     const [programs] = await db.execute('SELECT * FROM programs ORDER BY id DESC');
-    res.render('admin/programs/list', { title: 'Программы обучения', programs });
+    res.render('pages/admin/programs/list', { title: 'Программы обучения', programs });
 });
 
 router.get('/programs/add', isAdmin, (req, res) => {
-    res.render('admin/programs/add', { title: 'Программы обучения' });
+    res.render('pages/admin/programs/add', { title: 'Программы обучения' });
 });
 
 router.post('/programs/add', isAdmin, async (req, res) => {
@@ -78,7 +78,7 @@ router.post('/programs/add', isAdmin, async (req, res) => {
 router.get('/programs/edit/:id', isAdmin, async (req, res) => {
     const [rows] = await db.execute('SELECT * FROM programs WHERE id = ?', [req.params.id]);
     if (!rows.length) return res.status(404).send('Программа не найдена');
-    res.render('admin/programs/edit', { title: 'Программы обучения', program: rows[0] });
+    res.render('pages/admin/programs/edit', { title: 'Программы обучения', program: rows[0] });
 });
 
 router.post('/programs/edit/:id', isAdmin, async (req, res) => {
@@ -97,11 +97,11 @@ router.post('/programs/delete/:id', isAdmin, async (req, res) => {
 
 router.get('/contacts', isAdmin, async (req, res) => {
     const [contacts] = await db.execute('SELECT * FROM contacts ORDER BY id DESC');
-    res.render('admin/contacts/list', { title: 'Контакты', contacts });
+    res.render('pages/admin/contacts/list', { title: 'Контакты', contacts });
 });
 
 router.get('/contacts/add', isAdmin, (req, res) => {
-    res.render('admin/contacts/add', { title: 'Контакты' });
+    res.render('pages/admin/contacts/add', { title: 'Контакты' });
 });
 
 router.post('/contacts/add', isAdmin, async (req, res) => {
@@ -117,7 +117,7 @@ router.post('/contacts/add', isAdmin, async (req, res) => {
 router.get('/contacts/edit/:id', isAdmin, async (req, res) => {
     const [rows] = await db.execute('SELECT * FROM contacts WHERE id = ?', [req.params.id]);
     if (!rows.length) return res.status(404).send('Контакт не найден');
-    res.render('admin/contacts/edit', { title: 'Контакты', contact: rows[0] });
+    res.render('pages/admin/contacts/edit', { title: 'Контакты', contact: rows[0] });
 });
 
 router.post('/contacts/edit/:id', isAdmin, async (req, res) => {
@@ -137,7 +137,7 @@ router.post('/contacts/delete/:id', isAdmin, async (req, res) => {
 router.get('/schedule', isAdmin, async (req, res) => {
     const [rows] = await db.execute('SELECT * FROM schedule WHERE id = 1');
     const schedule = rows[0];
-    res.render('admin/schedule/edit', { title: 'Расписание', schedule });
+    res.render('pages/admin/schedule/edit', { title: 'Расписание', schedule });
 });
 
 router.post('/schedule', isAdmin, async (req, res) => {
@@ -151,11 +151,11 @@ router.post('/schedule', isAdmin, async (req, res) => {
 
 router.get('/teachers', isAdmin, async (req, res) => {
     const [teachers] = await db.execute('SELECT * FROM teachers');
-    res.render('admin/teachers/list', { title: 'Педагогический состав', teachers });
+    res.render('pages/admin/teachers/list', { title: 'Педагогический состав', teachers });
 });
 
 router.get('/teachers/add', isAdmin, (req, res) => {
-    res.render('admin/teachers/add', { title: 'Педагогический состав' });
+    res.render('pages/admin/teachers/add', { title: 'Педагогический состав' });
 });
 
 router.post('/teachers/add', isAdmin, async (req, res) => {
@@ -170,7 +170,7 @@ router.post('/teachers/add', isAdmin, async (req, res) => {
 router.get('/teachers/edit/:id', isAdmin, async (req, res) => {
     const [rows] = await db.execute('SELECT * FROM teachers WHERE id = ?', [req.params.id]);
     if (!rows.length) return res.status(404).send('Педагог не найден');
-    res.render('admin/teachers/edit', { title: 'Педагогический состав', teacher: rows[0] });
+    res.render('pages/admin/teachers/edit', { title: 'Педагогический состав', teacher: rows[0] });
 });
 
 router.post('/teachers/edit/:id', isAdmin, async (req, res) => {
@@ -187,11 +187,11 @@ router.post('/teachers/delete/:id', isAdmin, async (req, res) => {
 
 router.get('/achievements', isAdmin, async (req, res) => {
     const [achievements] = await db.execute('SELECT * FROM achievements ORDER BY date DESC');
-    res.render('admin/achievements/list', { title: 'Достижения', achievements });
+    res.render('pages/admin/achievements/list', { title: 'Достижения', achievements });
 });
 
 router.get('/achievements/add', isAdmin, (req, res) => {
-    res.render('admin/achievements/add', { title: 'Достижения' });
+    res.render('pages/admin/achievements/add', { title: 'Достижения' });
 });
 
 router.post('/achievements/add', isAdmin, async (req, res) => {
@@ -207,7 +207,7 @@ router.post('/achievements/add', isAdmin, async (req, res) => {
 router.get('/achievements/edit/:id', isAdmin, async (req, res) => {
     const [rows] = await db.execute('SELECT * FROM achievements WHERE id = ?', [req.params.id]);
     if (!rows.length) return res.status(404).send('Достижение не найдено');
-    res.render('admin/achievements/edit', { title: 'Достижения', achievement: rows[0] });
+    res.render('pages/admin/achievements/edit', { title: 'Достижения', achievement: rows[0] });
 });
 
 router.post('/achievements/edit/:id', isAdmin, async (req, res) => {

@@ -1,0 +1,34 @@
+<%- include(partials + '/header') %>
+
+<h1>Заявки поступления</h1>
+
+<% if (applications.length === 0) { %>
+    <p>Заявок пока нет.</p>
+<% } else { %>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>ФИО</th>
+            <th>Возраст</th>
+            <th>Телефон</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% applications.forEach(app => { %>
+            <tr>
+                <td><%= new Date(app.submitted_at).toLocaleString() %></td>
+                <td><%= app.name %></td>
+                <td><%= app.age %></td>
+                <td><%= app.phone || '—' %></td>
+                <td><%= app.email || '—' %></td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+<% } %>
+
+<a href="/admin">← Назад в админку</a>
+
+<%- include(partials + '/footer') %>

@@ -1,0 +1,17 @@
+<%- include(partials + '/header') %>
+<h1>Новости</h1>
+
+<a href="/admin/news/add">Добавить новость</a>
+<ul>
+    <% news.forEach(n => { %>
+        <li>
+            <strong><%= n.title %></strong> — <%= n.created_at.toLocaleDateString() %><br>
+            <form action="/admin/news/delete/<%= n.id %>" method="POST" onsubmit="return confirm('Удалить?')">
+                <a href="/admin/news/edit/<%= n.id %>">Редактировать</a>
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+    <% }) %>
+</ul>
+<a href="/">Назад на сайт</a>
+<%- include(partials + '/footer') %>

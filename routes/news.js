@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
         const [news] = await db.query(
             'SELECT id, title, image_url FROM news ORDER BY created_at DESC'
         );
-        res.status(200).render('pages/news_list', { title: 'Новости', news });
+        res.status(200).render('pages/news/list', { title: 'Новости', news });
     } catch (error) {
         console.error(error);
         res.status(500).send('Ошибка получения новостей');
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
             reaction = react?.type || null;
         }
 
-        res.status(200).render('pages/news_one', {
+        res.status(200).render('pages/news/details', {
             title: news.title,
             news,
             reaction,

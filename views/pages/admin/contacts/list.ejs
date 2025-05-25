@@ -1,0 +1,39 @@
+<%- include(partials + '/header') %>
+
+<h1>Контакты</h1>
+
+<a href="/admin/contacts/add" class="btn">Добавить контакт</a>
+
+<table border="1" cellpadding="8">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Соц. сети</th>
+        <th>Адрес</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% contacts.forEach(c => { %>
+        <tr>
+            <td><%= c.title %></td>
+            <td><%= c.phone || '—' %></td>
+            <td><%= c.email || '—' %></td>
+            <td><%= c.social || '—' %></td>
+            <td><%= c.address || '—' %></td>
+            <td>
+                <a href="/admin/contacts/edit/<%= c.id %>">✏️</a>
+                <form action="/admin/contacts/delete/<%= c.id %>" method="POST" style="display:inline;">
+                    <button onclick="return confirm('Удалить?')">🗑️</button>
+                </form>
+            </td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+
+<a href="/admin">← Назад</a>
+
+<%- include(partials + '/footer') %>

@@ -1,8 +1,6 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const mysql = require('mysql2/promise');
-const fs = require('fs');
 const url = require('url');
 
 const indexRouter = require('./routes/index');
@@ -37,8 +35,11 @@ app.use((req, res, next) => {
     next();
 });
 
+app.locals.partials = path.join(__dirname, 'views/partials');
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 app.use((req, res, next) => {
     const parsedUrl = url.parse(req.url, true);

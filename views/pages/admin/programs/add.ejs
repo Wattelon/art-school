@@ -1,0 +1,16 @@
+<%- include(partials + '/header') %>
+
+<h1>Добавить программу обучения</h1>
+
+<form action="/admin/programs/add" method="POST">
+    <label>Название*: <input type="text" name="title" required></label><br>
+    <label>Описание: <textarea name="description"></textarea></label><br>
+    <label>Расписание: <textarea name="schedule"></textarea></label><br>
+    <label>Учебный план: <textarea name="plan"></textarea></label><br>
+    <label>Возрастная группа: <input type="text" name="age_group"></label><br>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a href="/admin/programs">← Назад</a>
+
+<%- include(partials + '/footer') %>

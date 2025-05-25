@@ -1,0 +1,16 @@
+<%- include(partials + '/header') %>
+
+<h1>Программы обучения</h1>
+
+<ul class="program-list">
+    <% programs.forEach(p => { %>
+        <li>
+            <h2><%= p.title %></h2>
+            <p><%= p.description.substring(0, 150) %>...</p>
+            <a href="/programs/<%= p.id %>">Подробнее</a>
+        </li>
+    <% }) %>
+</ul>
+<a href="/application" class="btn">Записаться</a>
+
+<%- include(partials + '/footer') %>

@@ -1,0 +1,19 @@
+<%- include(partials + '/header') %>
+
+<h1>Форма подачи заявки</h1>
+
+<% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+<% } %>
+
+<form action="/application" method="POST">
+    <label>ФИО: <input type="text" name="name" required></label><br>
+    <label>Возраст: <input type="number" name="age" required></label><br>
+    <label>Телефон: <input type="tel" name="phone"></label><br>
+    <label>Email: <input type="email" name="email"></label><br>
+    <button type="submit">Отправить</button>
+</form>
+
+<a href="/programs">← Назад к программам</a>
+
+<%- include(partials + '/footer') %>

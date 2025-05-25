@@ -5,7 +5,7 @@ const db = require('../db');
 router.get('/', async (req, res) => {
     try {
         const [news] = await db.query('SELECT id, title, image_url FROM news ORDER BY created_at DESC LIMIT 3');
-        res.status(200).render('pages/home', {
+        res.status(200).render('pages/index', {
             title: 'Школа Искусств',
             news
         });
