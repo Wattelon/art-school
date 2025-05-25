@@ -1,0 +1,22 @@
+<%- include('../../partials/header') %>
+
+<h1>Достижения</h1>
+<a href="/admin/achievements/add">➕ Добавить достижение</a>
+
+<ul>
+    <% achievements.forEach(a => { %>
+        <li>
+            <strong><%= a.title %></strong>
+            <% if (a.date) { %> (<%= new Date(a.date).toLocaleDateString() %>) <% } %><br>
+            <p><%= a.description %></p>
+            <a href="/admin/achievements/edit/<%= a.id %>">✏️ Редактировать</a>
+            <form action="/admin/achievements/delete/<%= a.id %>" method="POST" style="display:inline">
+                <button type="submit" onclick="return confirm('Удалить?')">🗑️ Удалить</button>
+            </form>
+        </li>
+        <hr>
+    <% }) %>
+</ul>
+
+<a href="/admin">← Назад</a>
+<%- include('../../partials/footer') %>

@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<h1>О нашей школе</h1>
+
+<section>
+    <h2>Педагогический состав</h2>
+    <ul class="teacher-list">
+        <% teachers.forEach(t => { %>
+            <li>
+                <strong><%= t.name %></strong> — <%= t.subject %> <br/>
+                <em><%= t.bio %></em>
+            </li>
+        <% }) %>
+    </ul>
+</section>
+
+<section>
+    <h2>Расписание работы</h2>
+    <table class="schedule">
+        <tr><th>День</th><th>Время</th></tr>
+        <% schedule.forEach(s => { %>
+            <tr>
+                <td><%= s.day %></td>
+                <td><%= s.hours %></td>
+            </tr>
+        <% }) %>
+    </table>
+</section>
+
+<section>
+    <h2>Наши достижения</h2>
+    <ul class="achievement-list">
+        <% achievements.forEach(a => { %>
+            <li><strong><%= a.date.toISOString().split('T')[0] %></strong>: <%= a.description %></li>
+        <% }) %>
+    </ul>
+</section>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<main>
+    <section class="intro">
+        <h1>Добро пожаловать в Школу Искусств</h1>
+        <p>Развивайте свои творческие способности под руководством профессионалов!</p>
+    </section>
+
+    <section class="cta">
+        <a href="/application" class="cta-button">Поступить</a>
+    </section>
+
+    <section class="latest-news">
+        <h2>Последние новости</h2>
+        <div class="news-list">
+            <% news.forEach(item => { %>
+                <div class="news-item">
+                    <img src="<%= item.image_url %>" alt="Обложка" />
+                    <h3><a href="/news/<%= item.id %>"><%= item.title %></a></h3>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+</main>
+
+<%- include('../partials/footer') %>

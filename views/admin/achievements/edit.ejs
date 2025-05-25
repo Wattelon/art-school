@@ -1,0 +1,11 @@
+<%- include('../../partials/header') %>
+
+<h1>Редактировать достижение</h1>
+<form action="/admin/achievements/edit/<%= achievement.id %>" method="POST">
+    <label>Заголовок:<br><input type="text" name="title" value="<%= achievement.title %>" required></label><br><br>
+    <label>Описание:<br><textarea name="description" rows="5" cols="60"><%= achievement.description %></textarea></label><br><br>
+    <label>Дата:<br><input type="date" name="date" value="<%= achievement.date ? achievement.date.toISOString().substring(0, 10) : '' %>"></label><br><br>
+    <button type="submit">Сохранить</button>
+</form>
+<a href="/admin/achievements">← Назад</a>
+<%- include('../../partials/footer') %>

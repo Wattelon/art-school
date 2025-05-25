@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<article class="news-full">
+    <h1><%= news.title %></h1>
+    <% if (news.image_url) { %>
+        <img src="<%= news.image_url %>" alt="обложка новости" />
+    <% } %>
+    <p><%= news.content %></p>
+
+    <% if (user) { %>
+        <form method="POST" action="/reactions/<%= news.id %>" class="reaction-form">
+            <button name="type" value="like" <%= reaction === 'like' ? 'disabled' : '' %>><%= news.likes %>👍 Нравится</button>
+            <button name="type" value="dislike" <%= reaction === 'dislike' ? 'disabled' : '' %>><%= news.dislikes %>👎 Не нравится</button>
+        </form>
+    <% } else { %>
+        <p><a href="/auth">Войдите</a>, чтобы реагировать на новость</p>
+    <% } %>
+</article>
+
+<%- include('../partials/footer') %>

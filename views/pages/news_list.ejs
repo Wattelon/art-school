@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<h1>Новости</h1>
+
+<div class="news-list">
+    <% news.forEach(item => { %>
+        <div class="news-card">
+            <img src="<%= item.image_url %>" alt="обложка" />
+            <h3>
+                <a href="/news/<%= item.id %>"><%= item.title %></a>
+            </h3>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('../partials/footer') %>

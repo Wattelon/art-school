@@ -1,0 +1,16 @@
+<%- include('../../partials/header') %>
+
+<h1>Редактировать контакт "<%= contact.title %>"</h1>
+
+<form action="/admin/contacts/edit/<%= contact.id %>" method="POST">
+    <label>Название*: <input type="text" name="title" value="<%= contact.title %>" required></label><br>
+    <label>Телефон: <input type="text" name="phone" value="<%= contact.phone %>"></label><br>
+    <label>Email: <input type="email" name="email" value="<%= contact.email %>"></label><br>
+    <label>Соцсети: <textarea name="social"><%= contact.social %></textarea></label><br>
+    <label>Адрес: <textarea name="address"><%= contact.address %></textarea></label><br>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a href="/admin/contacts">← Назад</a>
+
+<%- include('../../partials/footer') %>

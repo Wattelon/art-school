@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+<h1>Контакты</h1>
+
+<section class="contacts">
+    <% contacts.forEach(c => { %>
+        <div class="contact-card">
+            <h2><%= c.title %></h2>
+            <% if (c.phone) { %>
+                <p><strong>Телефон:</strong> <a href="tel:<%= c.phone %>"><%= c.phone %></a></p>
+            <% } %>
+            <% if (c.email) { %>
+                <p><strong>Email:</strong> <a href="mailto:<%= c.email %>"><%= c.email %></a></p>
+            <% } %>
+            <% if (c.social) { %>
+                <p><strong>Соцсети:</strong> <a href="<%= c.social %>" target="_blank"><%= c.social %></a></p>
+            <% } %>
+            <% if (c.address) { %>
+                <p><strong>Адрес:</strong> <%= c.address %></p>
+            <% } %>
+        </div>
+    <% }) %>
+</section>
+
+<%- include('../partials/footer') %>
