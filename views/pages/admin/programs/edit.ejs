@@ -8,6 +8,14 @@
     <label>Расписание: <textarea name="schedule"><%= program.schedule %></textarea></label><br>
     <label>Учебный план: <textarea name="plan"><%= program.plan %></textarea></label><br>
     <label>Возрастная группа: <input type="text" name="age_group" value="<%= program.age_group %>"></label><br>
+    <label>Преподаватель:
+        <select name="teacher_id">
+            <option></option>
+            <% teachers.forEach(teacher => { %>
+                <option value="<%= teacher.id %>" <%= teacher.id === program.teacher_id ? "selected" : ""%>><%= teacher.name %></option>
+            <% }) %>
+        </select>
+    </label><br>
     <button type="submit">Сохранить</button>
 </form>
 

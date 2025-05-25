@@ -3,7 +3,8 @@
 <h1>Редактировать педагога</h1>
 <form action="/admin/teachers/edit/<%= teacher.id %>" method="POST">
     <label>Имя:<br><input type="text" name="name" value="<%= teacher.name %>" required></label><br><br>
-    <label>Биография:<br><textarea name="bio" rows="6" cols="60" required><%= teacher.bio %></textarea></label><br><br>
+    <label>Биография:<br><textarea name="bio" rows="6" cols="60"><%= teacher.bio %></textarea></label><br><br>
+    <label>Ссылка на фотографию:<br><input type="text" name="image_url" value="<%= teacher.image_url %>"></label><br><br>
     <button type="submit">Сохранить</button>
 </form>
 <a href="/admin/teachers">← Назад</a>
