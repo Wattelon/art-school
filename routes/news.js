@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const moment = require("moment/moment");
 
 router.get('/', async (req, res) => {
     try {
         const [news] = await db.query(
-            'SELECT id, title, image_url FROM news ORDER BY created_at DESC'
+            'SELECT * FROM news ORDER BY created_at DESC'
         );
+        news.forEach(row => {
+            row.time = moment(row.created_at).format('DD.MM.YYYY');
+        });
         res.status(200).render('pages/news/list', { title: 'Новости', news });
     } catch (error) {
         console.error(error);

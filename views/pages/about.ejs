@@ -7,7 +7,8 @@
     <ul class="teacher-list">
         <% teachers.forEach(t => { %>
             <li>
-                <strong><%= t.name %></strong> — <%= t.subject %> <br/>
+                <img src="<%= t.image_url %>" alt="портрет" />
+                <strong><%= t.name %></strong><br/>
                 <em><%= t.bio %></em>
             </li>
         <% }) %>
@@ -18,10 +19,10 @@
     <h2>Расписание работы</h2>
     <table class="schedule">
         <tr><th>День</th><th>Время</th></tr>
-        <% schedule.forEach(s => { %>
+        <% weekSchedule.forEach(schedule => { %>
             <tr>
-                <td><%= s.day %></td>
-                <td><%= s.hours %></td>
+                <td><%= schedule.dayOfWeek %></td>
+                <td><%= schedule.workingHours %></td>
             </tr>
         <% }) %>
     </table>
@@ -31,7 +32,7 @@
     <h2>Наши достижения</h2>
     <ul class="achievement-list">
         <% achievements.forEach(a => { %>
-            <li><strong><%= a.date.toISOString().split('T')[0] %></strong>: <%= a.description %></li>
+            <li><strong><%= a.date %></strong>: <%= a.title %> - <%= a.description %></li>
         <% }) %>
     </ul>
 </section>

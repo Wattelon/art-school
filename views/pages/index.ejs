@@ -16,7 +16,7 @@
             <% news.forEach(item => { %>
                 <div class="news-item">
                     <img src="<%= item.image_url %>" alt="Обложка" />
-                    <h3><a href="/news/<%= item.id %>"><%= item.title %></a></h3>
+                    <h3><a href="/news/<%= item.id %>"><%= item.title %></a> - <%= item.time %></h3>
                 </div>
             <% }) %>
         </div>

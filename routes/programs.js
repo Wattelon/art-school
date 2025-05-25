@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const [[program]] = await db.query('SELECT * FROM programs WHERE id = ?', [id]);
+        const [[program]] = await db.query('SELECT programs.*, teachers.name as teacher from programs left join teachers on programs.teacher_id = teachers.id WHERE programs.id = ?', [id]);
         if (!program) return res.status(404).send('Программа не найдена');
         res.status(200).render('pages/programs/details', { title: program.title, program });
     } catch (error) {

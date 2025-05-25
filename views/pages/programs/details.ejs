@@ -5,15 +5,8 @@
 <p><strong>Описание:</strong> <%= program.description %></p>
 <p><strong>Учебный план:</strong> <%= program.plan %></p>
 <p><strong>Расписание:</strong> <%= program.schedule %></p>
+<p><strong>Преподаватель:</strong> <%= program.teacher %></p>
 
-<hr/>
-
-<h2>Записаться</h2>
-<form action="/programs/<%= program.id %>/apply" method="POST">
-    <label>ФИО: <input type="text" name="full_name" required /></label><br/>
-    <label>Возраст: <input type="number" name="age" required /></label><br/>
-    <label>Контактная информация: <input type="text" name="contact_info" required /></label><br/>
-    <button type="submit">Отправить заявку</button>
-</form>
+<a href="/application" class="cta-button">Поступить</a>
 
 <%- include(partials + '/footer') %>

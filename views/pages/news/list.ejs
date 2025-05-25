@@ -7,7 +7,7 @@
         <div class="news-card">
             <img src="<%= item.image_url %>" alt="обложка" />
             <h3>
-                <a href="/news/<%= item.id %>"><%= item.title %></a>
+                <a href="/news/<%= item.id %>"><%= item.title %></a> - <%= item.time %>
             </h3>
         </div>
     <% }) %>
