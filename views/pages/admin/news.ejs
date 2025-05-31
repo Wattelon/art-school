@@ -1,0 +1,61 @@
+<%- include('../../partials/header') %>
+
+<main>
+    <h1>Управление новостями</h1>
+
+    <div id="news-controls">
+        <button id="show-add-form">Добавить новость</button>
+        <button id="show-edit-list">Редактировать новости</button>
+        <button id="show-delete-list">Удалить новости</button>
+    </div>
+
+    <div id="news-unified-list">
+        <h2>Список новостей</h2>
+        <div id="news-list">
+            <form id="deleteForm">
+                <% news.forEach(n => { %>
+                    <div class="news-card" data-id="<%= n.id %>">
+                        <h3><%= n.title %></h3>
+                        <p><%= n.content.slice(0, 100) %>...</p>
+                        <div class="news-actions">
+                            <button class="edit-btn" style="display:none;">Редактировать</button>
+                            <label class="delete-checkbox" style="display:none;">
+                                <input type="checkbox" name="delete_ids[]" value="<%= n.id %>"> Удалить
+                            </label>
+                        </div>
+                        <hr>
+                    </div>
+                <% }) %>
+
+                <button id="deleteButton" type="submit" style="display:none;">Удалить выбранные</button>
+            </form>
+        </div>
+
+        <div id="edit-form-container" style="display:none;">
+            <h3>Редактировать новость</h3>
+            <form id="editNewsForm">
+                <input type="hidden" name="id" id="edit-id">
+                <input name="title" id="edit-title" placeholder="Заголовок" required><br>
+                <textarea name="content" id="edit-content" placeholder="Содержание" required></textarea><br>
+                <input name="image_url" id="edit-image" placeholder="Ссылка на изображение" required><br>
+                <button type="submit">Сохранить</button>
+                <button type="button" id="edit-cancel">Отмена</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-form" style="display:none;">
+        <h2>Добавить новость</h2>
+        <form id="addNewsForm">
+            <input name="title" placeholder="Заголовок" required><br>
+            <textarea name="content" placeholder="Содержание" required></textarea><br>
+            <input name="image_url" placeholder="Ссылка на изображение" required><br>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/admin-news.js"></script>
+
+<%- include('../../partials/footer') %>

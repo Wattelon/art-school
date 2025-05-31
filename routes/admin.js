@@ -14,7 +14,7 @@ router.get('/', isAdmin, (req, res) => {
 
 router.get('/news', isAdmin, async (req, res) => {
     const [news] = await db.query('SELECT * FROM news ORDER BY created_at DESC');
-    res.render('pages/admin/news/list', { title: 'Админка — Новости', news });
+    res.render('pages/admin/news', { title: 'Админка — Новости', news });
 });
 
 router.get('/news/add', isAdmin, (req, res) => {
@@ -227,6 +227,41 @@ router.post('/achievements/edit/:id', isAdmin, async (req, res) => {
 router.post('/achievements/delete/:id', isAdmin, async (req, res) => {
     await db.execute('DELETE FROM achievements WHERE id = ?', [req.params.id]);
     res.redirect('/admin/achievements');
+});
+
+router.post('/news/add-ajax', isAdmin, async (req, res) => {
+    const { title, content, image_url } = req.body;
+    if (!title || !content || !image_url) {
+        return res.status(400).json({ message: 'Все поля обязательны' });
+    }
+    await db.query('INSERT INTO news (title, content, image_url) VALUES (?, ?, ?)', [title, content, image_url]);
+    res.json({ message: 'Новость успешно добавлена' });
+});
+
+router.post('/news/edit-ajax/:id', isAdmin, async (req, res) => {
+    const { title, content, image_url } = req.body;
+    const id = req.params.id;
+    await db.query('UPDATE news SET title = ?, content = ?, image_url = ? WHERE id = ?', [title, content, image_url, id]);
+    res.json({ message: 'Новость успешно обновлена' });
+});
+
+router.post('/news/delete-ajax', isAdmin, async (req, res) => {
+    const ids = req.body.delete_ids;
+    if (!ids || ids.length === 0) {
+        return res.status(400).json({ message: 'Нет выбранных новостей' });
+    }
+
+    const placeholders = ids.map(() => '?').join(',');
+    await db.query(`DELETE FROM news WHERE id IN (${placeholders})`, ids);
+
+    res.json({ message: 'Новости удалены' });
+});
+
+
+router.get('/news/one/:id', isAdmin, async (req, res) => {
+    const [[news]] = await db.query('SELECT * FROM news WHERE id = ?', [req.params.id]);
+    if (!news) return res.status(404).json({ error: 'Новость не найдена' });
+    res.json(news);
 });
 
 
