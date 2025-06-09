@@ -18,7 +18,7 @@
                         <h3><%= n.title %></h3>
                         <p><%= n.content.slice(0, 100) %>...</p>
                         <div class="news-actions">
-                            <button class="edit-btn" style="display:none;">Редактировать</button>
+                            <button type="button" class="edit-btn" style="display:none;">Редактировать</button>
                             <label class="delete-checkbox" style="display:none;">
                                 <input type="checkbox" name="delete_ids[]" value="<%= n.id %>"> Удалить
                             </label>
