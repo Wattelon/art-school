@@ -2,9 +2,18 @@
 
 <h1>Новости</h1>
 
-<div class="news-list">
+<div id="filters">
+    <input type="text" id="filter-title" placeholder="Фильтр по названию..." />
+    <select id="sort-order">
+        <option value="desc">Сначала новые</option>
+        <option value="asc">Сначала старые</option>
+    </select>
+    <button id="reset">Показать все</button>
+</div>
+
+<div class="news-list" id="news-container">
     <% news.forEach(item => { %>
-        <div class="news-card">
+        <div class="news-card" data-title="<%= item.title.toLowerCase() %>" data-time="<%= item.created_at %>">
             <img src="<%= item.image_url %>" alt="обложка" />
             <h3>
                 <a href="/news/<%= item.id %>"><%= item.title %></a> - <%= item.time %>
@@ -12,5 +21,7 @@
         </div>
     <% }) %>
 </div>
+
+<script src="/js/news.js"></script>
 
 <%- include(partials + '/footer') %>
