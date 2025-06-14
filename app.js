@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const url = require('url');
+const logChangeMiddleware = require('./middleware/logger');
 
 const indexRouter = require('./routes/index');
 const newsRouter = require('./routes/news');
@@ -29,6 +30,7 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(logChangeMiddleware);
 
 app.use((req, res, next) => {
     res.locals.session = req.session;
