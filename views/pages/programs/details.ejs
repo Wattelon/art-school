@@ -1,12 +1,38 @@
 <%- include(partials + '/header') %>
 
-<h1><%= program.title %></h1>
-<p><strong>Возрастная группа:</strong> <%= program.age_group %></p>
-<p><strong>Описание:</strong> <%= program.description %></p>
-<p><strong>Учебный план:</strong> <%= program.plan %></p>
-<p><strong>Расписание:</strong> <%= program.schedule %></p>
-<p><strong>Преподаватель:</strong> <%= program.teacher %></p>
+<main class="program-details">
+    <h1 class="program-details__title"><%= program.title %></h1>
 
-<a href="/application" class="cta-button">Поступить</a>
+    <dl class="program-details__info">
+        <div class="program-details__row">
+            <dt class="program-details__term">Возрастная группа:</dt>
+            <dd class="program-details__desc"><%= program.age_group %></dd>
+        </div>
+
+        <div class="program-details__row">
+            <dt class="program-details__term">Описание:</dt>
+            <dd class="program-details__desc"><%= program.description %></dd>
+        </div>
+
+        <div class="program-details__row">
+            <dt class="program-details__term">Учебный план:</dt>
+            <dd class="program-details__desc"><%= program.plan %></dd>
+        </div>
+
+        <div class="program-details__row">
+            <dt class="program-details__term">Расписание:</dt>
+            <dd class="program-details__desc"><%= program.schedule %></dd>
+        </div>
+
+        <div class="program-details__row">
+            <dt class="program-details__term">Преподаватель:</dt>
+            <dd class="program-details__desc"><%= program.teacher %></dd>
+        </div>
+    </dl>
+
+    <div class="cta">
+        <a href="/application" class="cta__button">Поступить</a>
+    </div>
+</main>
 
 <%- include(partials + '/footer') %>

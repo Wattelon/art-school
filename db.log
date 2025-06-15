@@ -1,2 +1,11 @@
 [2025-06-14T16:09:37.664Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}
 [2025-06-14T16:09:55.009Z] POST /admin/news/add - {"title":"666","content":"2313","image_url":"321"}
+[2025-06-15T08:58:16.526Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}
+[2025-06-15T10:09:45.553Z] POST /auth/login - {"email":"alex.serov2004@yandex.ru","password":"1234"}
+[2025-06-15T10:09:56.399Z] POST /reactions/2 - {"type":"like"}
+[2025-06-15T10:51:58.868Z] POST /auth/login - {"email":"alex.serov2004@yandex.ru","password":"1234"}
+[2025-06-15T10:55:34.569Z] POST /application - {"name":"","age":"","phone":"","email":""}
+[2025-06-15T10:55:37.815Z] POST /application - {"name":"","age":"","phone":"","email":""}
+[2025-06-15T10:55:50.183Z] POST /application - {"name":"1","age":"","phone":"2","email":""}
+[2025-06-15T10:55:54.495Z] POST /application - {"name":"1","age":"2","phone":"2","email":""}
+[2025-06-15T10:56:38.183Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}

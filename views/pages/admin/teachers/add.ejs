@@ -1,12 +1,31 @@
 <%- include(partials + '/header') %>
 
-<h1>Добавить педагога</h1>
-<form action="/admin/teachers/add" method="POST">
-    <label>Имя:<br><input type="text" name="name" required></label><br><br>
-    <label>Биография:<br><textarea name="bio" rows="6" cols="60"></textarea></label><br><br>
-    <label>Ссылка на фотографию:<br><input type="text" name="image_url"></label><br><br>
-    <button type="submit">Добавить</button>
-</form>
-<a href="/admin/teachers">← Назад</a>
+<main class="form-block">
+    <h1 class="form-block__title">Добавить преподавателя</h1>
+
+    <form action="/admin/teachers/add" method="POST">
+        <div class="form-block__group">
+            <label>Имя:*<br>
+                <input type="text" name="name" required>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Биография:<br>
+                <textarea name="bio" rows="5"></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Ссылка на фотографию:<br>
+                <input type="text" name="image_url">
+            </label>
+        </div>
+
+        <button type="submit" class="cta-button">Добавить</button>
+    </form>
+
+    <p class="admin-back"><a href="/admin/teachers">← Назад</a></p>
+</main>
 
 <%- include(partials + '/footer') %>

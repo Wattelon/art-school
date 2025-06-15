@@ -1,24 +1,54 @@
 <%- include(partials + '/header') %>
 
-<h1>Редактировать программу "<%= program.title %>"</h1>
+<main class="form-block">
+    <h1 class="form-block__title">Редактировать программу "<%= program.title %>"</h1>
 
-<form action="/admin/programs/edit/<%= program.id %>" method="POST">
-    <label>Название*: <input type="text" name="title" value="<%= program.title %>" required></label><br>
-    <label>Описание: <textarea name="description"><%= program.description %></textarea></label><br>
-    <label>Расписание: <textarea name="schedule"><%= program.schedule %></textarea></label><br>
-    <label>Учебный план: <textarea name="plan"><%= program.plan %></textarea></label><br>
-    <label>Возрастная группа: <input type="text" name="age_group" value="<%= program.age_group %>"></label><br>
-    <label>Преподаватель:
-        <select name="teacher_id">
-            <option></option>
-            <% teachers.forEach(teacher => { %>
-                <option value="<%= teacher.id %>" <%= teacher.id === program.teacher_id ? "selected" : ""%>><%= teacher.name %></option>
-            <% }) %>
-        </select>
-    </label><br>
-    <button type="submit">Сохранить</button>
-</form>
+    <form action="/admin/programs/edit/<%= program.id %>" method="POST">
+        <div class="form-block__group">
+            <label>Название:*<br>
+                <input type="text" name="title" value="<%= program.title %>" required>
+            </label>
+        </div>
 
-<a href="/admin/programs">← Назад</a>
+        <div class="form-block__group">
+            <label>Описание:<br>
+                <textarea name="description" rows="4"><%= program.description %></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Расписание:<br>
+                <textarea name="schedule" rows="3"><%= program.schedule %></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Учебный план:<br>
+                <textarea name="plan" rows="3"><%= program.plan %></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Возрастная группа:<br>
+                <input type="text" name="age_group" value="<%= program.age_group %>">
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Преподаватель:<br>
+                <select name="teacher_id">
+                    <option value="">—</option>
+                    <% teachers.forEach(teacher => { %>
+                        <option value="<%= teacher.id %>" <%= teacher.id === program.teacher_id ? 'selected' : '' %>><%= teacher.name %></option>
+                    <% }) %>
+                </select>
+            </label>
+        </div>
+
+        <button type="submit" class="cta-button">Сохранить</button>
+    </form>
+
+    <p class="admin-back"><a href="/admin/programs">← Назад</a></p>
+</main>
 
 <%- include(partials + '/footer') %>

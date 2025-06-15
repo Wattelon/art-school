@@ -1,17 +1,25 @@
-<%- include('../../partials/header') %>
+<%- include(partials + '/header') %>
 
-<h1>Вход</h1>
+<main class="auth-page">
+    <h1 class="auth-page__title">Вход</h1>
 
-<% if (error) { %>
-    <p style="color:red;"><%= error %></p>
-<% } %>
+    <% if (error) { %>
+        <p class="auth-page__error" role="alert"><%= error %></p>
+    <% } %>
 
-<form action="/auth/login" method="POST">
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Пароль" required><br>
-    <button type="submit">Войти</button>
-</form>
+    <form action="/auth/login" method="POST" class="auth-form" novalidate>
+        <label for="email" class="auth-form__label">Email</label>
+        <input id="email" class="auth-form__input" type="email" name="email" placeholder="Email" required autocomplete="username" />
 
-<p>Нет аккаунта? <a href="/auth/register">Зарегистрироваться</a></p>
+        <label for="password" class="auth-form__label">Пароль</label>
+        <input id="password" class="auth-form__input" type="password" name="password" placeholder="Пароль" required autocomplete="current-password" />
 
-<%- include('../../partials/footer') %>
+        <button type="submit" class="cta-button auth-form__submit">Войти</button>
+    </form>
+
+    <p class="auth-page__switch">
+        Нет аккаунта? <a href="/auth/register">Зарегистрироваться</a>
+    </p>
+</main>
+
+<%- include(partials + '/footer') %>

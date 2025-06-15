@@ -1,20 +1,43 @@
 <%- include(partials + '/header') %>
 
-<article class="news-full">
-    <h1><%= news.title %></h1>
-    <% if (news.image_url) { %>
-        <img src="<%= news.image_url %>" alt="обложка новости" />
-    <% } %>
-    <p><%= news.content %></p>
+<main class="main-content">
+    <article class="news-full">
+        <h1 class="news-full__title"><%= news.title %></h1>
 
-    <% if (user) { %>
-        <form method="POST" action="/reactions/<%= news.id %>" class="reaction-form">
-            <button name="type" value="like" <%= reaction === 'like' ? 'disabled' : '' %>><%= news.likes %>👍 Нравится</button>
-            <button name="type" value="dislike" <%= reaction === 'dislike' ? 'disabled' : '' %>><%= news.dislikes %>👎 Не нравится</button>
-        </form>
-    <% } else { %>
-        <p><a href="/auth">Войдите</a>, чтобы реагировать на новость</p>
-    <% } %>
-</article>
+        <% if (news.image_url) { %>
+            <img src="<%= news.image_url %>" alt="Обложка новости" class="news-full__image" />
+        <% } %>
+
+        <div class="news-full__content">
+            <p><%= news.content %></p>
+        </div>
+
+        <% if (user) { %>
+            <form method="POST" action="/reactions/<%= news.id %>" class="reaction-form">
+                <button
+                        name="type"
+                        value="like"
+                        class="reaction-form__button <%= reaction === 'like' ? 'reaction-form__button--active' : '' %>"
+                        <%= reaction === 'like' ? 'disabled' : '' %>
+                >
+                    👍 Нравится <span class="reaction-form__count"><%= news.likes %></span>
+                </button>
+
+                <button
+                        name="type"
+                        value="dislike"
+                        class="reaction-form__button <%= reaction === 'dislike' ? 'reaction-form__button--active' : '' %>"
+                        <%= reaction === 'dislike' ? 'disabled' : '' %>
+                >
+                    👎 Не нравится <span class="reaction-form__count"><%= news.dislikes %></span>
+                </button>
+            </form>
+        <% } else { %>
+            <p class="news-full__auth-hint">
+                <a href="/auth/login" class="news-full__auth-link">Войдите</a>, чтобы реагировать на новость
+            </p>
+        <% } %>
+    </article>
+</main>
 
 <%- include(partials + '/footer') %>

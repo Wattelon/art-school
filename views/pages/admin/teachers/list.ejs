@@ -1,21 +1,43 @@
 <%- include(partials + '/header') %>
 
-<h1>Педагоги</h1>
-<a href="/admin/teachers/add">➕ Добавить</a>
+<main class="admin-list">
+    <h1 class="admin-list__title">Педагоги</h1>
 
-<ul>
-    <% teachers.forEach(teacher => { %>
-        <li>
-            <strong><%= teacher.name %></strong><br>
-            <p><%= teacher.bio %></p>
-            <a href="/admin/teachers/edit/<%= teacher.id %>">✏️ Редактировать</a>
-            <form action="/admin/teachers/delete/<%= teacher.id %>" method="POST" style="display:inline">
-                <button type="submit" onclick="return confirm('Удалить?')">🗑️ Удалить</button>
-            </form>
-        </li>
-        <hr>
-    <% }) %>
-</ul>
+    <div class="admin-list__actions">
+        <a href="/admin/teachers/add" class="cta-button">➕ Добавить преподавателя</a>
+    </div>
 
-<a href="/admin">← Назад</a>
+    <% if (teachers.length === 0) { %>
+        <p class="admin-list__empty">Преподавателей пока нет.</p>
+    <% } else { %>
+        <table class="admin-list__table">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Биография</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% teachers.forEach(t => { %>
+                <tr>
+                    <td><%= t.name %></td>
+                    <td><%= t.bio %></td>
+                    <td>
+                        <a href="/admin/teachers/edit/<%= t.id %>">✏️</a>
+                        <form action="/admin/teachers/delete/<%= t.id %>" method="POST" class="admin-list__delete-form">
+                            <button type="submit" onclick="return confirm('Удалить преподавателя?')">🗑️</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <p class="admin-list__back">
+        <a href="/admin">← Назад в админку</a>
+    </p>
+</main>
+
 <%- include(partials + '/footer') %>

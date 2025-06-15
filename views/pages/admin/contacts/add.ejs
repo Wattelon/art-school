@@ -1,16 +1,43 @@
 <%- include(partials + '/header') %>
 
-<h1>Добавить контакт</h1>
+<main class="form-block">
+    <h1 class="form-block__title">Добавить контакт</h1>
 
-<form action="/admin/contacts/add" method="POST">
-    <label>Название*: <input type="text" name="title" required></label><br>
-    <label>Телефон: <input type="text" name="phone"></label><br>
-    <label>Email: <input type="email" name="email"></label><br>
-    <label>Соцсети: <textarea name="social"></textarea></label><br>
-    <label>Адрес: <textarea name="address"></textarea></label><br>
-    <button type="submit">Сохранить</button>
-</form>
+    <form action="/admin/contacts/add" method="POST">
+        <div class="form-block__group">
+            <label>Название:*<br>
+                <input type="text" name="title" required>
+            </label>
+        </div>
 
-<a href="/admin/contacts">← Назад</a>
+        <div class="form-block__group">
+            <label>Телефон:<br>
+                <input type="text" name="phone">
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Email:<br>
+                <input type="email" name="email">
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Соцсети:<br>
+                <textarea name="social" rows="2"></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Адрес:<br>
+                <textarea name="address" rows="2"></textarea>
+            </label>
+        </div>
+
+        <button type="submit" class="cta-button">Сохранить</button>
+    </form>
+
+    <p class="admin-back"><a href="/admin/contacts">← Назад</a></p>
+</main>
 
 <%- include(partials + '/footer') %>

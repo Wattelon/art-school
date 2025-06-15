@@ -1,24 +1,54 @@
 <%- include(partials + '/header') %>
 
-<h1>Добавить программу обучения</h1>
+<main class="form-block">
+    <h1 class="form-block__title">Добавить программу обучения</h1>
 
-<form action="/admin/programs/add" method="POST">
-    <label>Название*: <input type="text" name="title" required></label><br>
-    <label>Описание: <textarea name="description"></textarea></label><br>
-    <label>Расписание: <textarea name="schedule"></textarea></label><br>
-    <label>Учебный план: <textarea name="plan"></textarea></label><br>
-    <label>Возрастная группа: <input type="text" name="age_group"></label><br>
-    <label>Преподаватель:
-        <select name="teacher_id">
-            <option value=""></option>
-            <% teachers.forEach(teacher => { %>
-                <option value="<%= teacher.id %>"><%= teacher.name %></option>
-            <% }) %>
-        </select>
-    </label><br>
-    <button type="submit">Сохранить</button>
-</form>
+    <form action="/admin/programs/add" method="POST">
+        <div class="form-block__group">
+            <label>Название:*<br>
+                <input type="text" name="title" required>
+            </label>
+        </div>
 
-<a href="/admin/programs">← Назад</a>
+        <div class="form-block__group">
+            <label>Описание:<br>
+                <textarea name="description" rows="4"></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Расписание:<br>
+                <textarea name="schedule" rows="3"></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Учебный план:<br>
+                <textarea name="plan" rows="3"></textarea>
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Возрастная группа:<br>
+                <input type="text" name="age_group">
+            </label>
+        </div>
+
+        <div class="form-block__group">
+            <label>Преподаватель:<br>
+                <select name="teacher_id">
+                    <option value="">—</option>
+                    <% teachers.forEach(teacher => { %>
+                        <option value="<%= teacher.id %>"><%= teacher.name %></option>
+                    <% }) %>
+                </select>
+            </label>
+        </div>
+
+        <button type="submit" class="cta-button">Сохранить</button>
+    </form>
+
+    <p class="admin-back"><a href="/admin/programs">← Назад</a></p>
+</main>
 
 <%- include(partials + '/footer') %>

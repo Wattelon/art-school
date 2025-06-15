@@ -1,17 +1,21 @@
 <%- include(partials + '/header') %>
 
-<h1>Админская панель</h1>
+<main class="admin-dashboard">
+    <h1 class="admin-dashboard__title">Панель администратора</h1>
 
-<ul>
-    <li><a href="/admin/news">Управление новостями</a></li>
-    <li><a href="/admin/applications">Заявки поступления</a></li>
-    <li><a href="/admin/programs">Программы обучения</a></li>
-    <li><a href="/admin/teachers">Преподаватели</a></li>
-    <li><a href="/admin/schedule">Расписание</a></li>
-    <li><a href="/admin/achievements">Достижения</a></li>
-    <li><a href="/admin/contacts">Контакты</a></li>
-</ul>
+    <ul class="admin-dashboard__menu">
+        <li><a href="/admin/news" class="admin-dashboard__link">Управление новостями</a></li>
+        <li><a href="/admin/applications" class="admin-dashboard__link">Заявки поступления</a></li>
+        <li><a href="/admin/programs" class="admin-dashboard__link">Программы обучения</a></li>
+        <li><a href="/admin/teachers" class="admin-dashboard__link">Преподаватели</a></li>
+        <li><a href="/admin/schedule" class="admin-dashboard__link">Расписание</a></li>
+        <li><a href="/admin/achievements" class="admin-dashboard__link">Достижения</a></li>
+        <li><a href="/admin/contacts" class="admin-dashboard__link">Контакты</a></li>
+    </ul>
 
-<a href="/">← Назад на сайт</a>
+    <p class="admin-dashboard__back">
+        <a href="/">← Назад на сайт</a>
+    </p>
+</main>
 
 <%- include(partials + '/footer') %>

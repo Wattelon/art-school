@@ -1,22 +1,45 @@
 <%- include(partials + '/header') %>
 
-<h1>Достижения</h1>
-<a href="/admin/achievements/add">➕ Добавить достижение</a>
+<main class="admin-list">
+    <h1 class="admin-list__title">Достижения</h1>
 
-<ul>
-    <% achievements.forEach(a => { %>
-        <li>
-            <strong><%= a.title %></strong>
-            <% if (a.date) { %> (<%= new Date(a.date).toLocaleDateString() %>) <% } %><br>
-            <p><%= a.description %></p>
-            <a href="/admin/achievements/edit/<%= a.id %>">✏️ Редактировать</a>
-            <form action="/admin/achievements/delete/<%= a.id %>" method="POST" style="display:inline">
-                <button type="submit" onclick="return confirm('Удалить?')">🗑️ Удалить</button>
-            </form>
-        </li>
-        <hr>
-    <% }) %>
-</ul>
+    <div class="admin-list__actions">
+        <a href="/admin/achievements/add" class="cta-button">➕ Добавить достижение</a>
+    </div>
 
-<a href="/admin">← Назад</a>
+    <% if (achievements.length === 0) { %>
+        <p class="admin-list__empty">Пока нет достижений.</p>
+    <% } else { %>
+        <table class="admin-list__table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Дата</th>
+                <th>Описание</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% achievements.forEach(a => { %>
+                <tr>
+                    <td><%= a.title %></td>
+                    <td><%= a.date ? new Date(a.date).toLocaleDateString() : '—' %></td>
+                    <td><%= a.description %></td>
+                    <td>
+                        <a href="/admin/achievements/edit/<%= a.id %>">✏️</a>
+                        <form action="/admin/achievements/delete/<%= a.id %>" method="POST" class="admin-list__delete-form">
+                            <button type="submit" onclick="return confirm('Удалить достижение?')">🗑️</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <p class="admin-list__back">
+        <a href="/admin">← Назад в админку</a>
+    </p>
+</main>
+
 <%- include(partials + '/footer') %>

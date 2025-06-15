@@ -1,39 +1,49 @@
 <%- include(partials + '/header') %>
 
-<h1>Контакты</h1>
+<main class="admin-list">
+    <h1 class="admin-list__title">Контакты</h1>
 
-<a href="/admin/contacts/add" class="btn">Добавить контакт</a>
+    <div class="admin-list__actions">
+        <a href="/admin/contacts/add" class="cta-button">➕ Добавить контакт</a>
+    </div>
 
-<table border="1" cellpadding="8">
-    <thead>
-    <tr>
-        <th>Название</th>
-        <th>Телефон</th>
-        <th>Email</th>
-        <th>Соц. сети</th>
-        <th>Адрес</th>
-        <th>Действия</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% contacts.forEach(c => { %>
-        <tr>
-            <td><%= c.title %></td>
-            <td><%= c.phone || '—' %></td>
-            <td><%= c.email || '—' %></td>
-            <td><%= c.social || '—' %></td>
-            <td><%= c.address || '—' %></td>
-            <td>
-                <a href="/admin/contacts/edit/<%= c.id %>">✏️</a>
-                <form action="/admin/contacts/delete/<%= c.id %>" method="POST" style="display:inline;">
-                    <button onclick="return confirm('Удалить?')">🗑️</button>
-                </form>
-            </td>
-        </tr>
-    <% }) %>
-    </tbody>
-</table>
+    <% if (contacts.length === 0) { %>
+        <p class="admin-list__empty">Контактов пока нет.</p>
+    <% } else { %>
+        <table class="admin-list__table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Соцсети</th>
+                <th>Адрес</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% contacts.forEach(c => { %>
+                <tr>
+                    <td><%= c.title %></td>
+                    <td><%= c.phone || '—' %></td>
+                    <td><%= c.email || '—' %></td>
+                    <td><%= c.social || '—' %></td>
+                    <td><%= c.address || '—' %></td>
+                    <td>
+                        <a href="/admin/contacts/edit/<%= c.id %>">✏️</a>
+                        <form action="/admin/contacts/delete/<%= c.id %>" method="POST" class="admin-list__delete-form">
+                            <button type="submit" onclick="return confirm('Удалить контакт?')">🗑️</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% } %>
 
-<a href="/admin">← Назад</a>
+    <p class="admin-list__back">
+        <a href="/admin">← Назад в админку</a>
+    </p>
+</main>
 
 <%- include(partials + '/footer') %>

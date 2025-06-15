@@ -1,16 +1,21 @@
 <%- include(partials + '/header') %>
 
-<h1>Программы обучения</h1>
+<main class="programs-page">
+    <h1 class="programs-page__title">Программы обучения</h1>
 
-<ul class="program-list">
-    <% programs.forEach(p => { %>
-        <li>
-            <h2><%= p.title %></h2>
-            <p><%= p.description.substring(0, 150) %>...</p>
-            <a href="/programs/<%= p.id %>">Подробнее</a>
-        </li>
-    <% }) %>
-</ul>
-<a href="/application" class="cta-button">Поступить</a>
+    <ul class="program-list">
+        <% programs.forEach(p => { %>
+            <li class="program-list__item">
+                <h2 class="program-list__title"><%= p.title %></h2>
+                <p class="program-list__description"><%= p.description.substring(0, 150) %>...</p>
+                <a href="/programs/<%= p.id %>" class="program-list__link" aria-label="Подробнее о программе <%= p.title %>">Подробнее</a>
+            </li>
+        <% }) %>
+    </ul>
+
+    <div class="cta">
+        <a href="/application" class="cta__button">Поступить</a>
+    </div>
+</main>
 
 <%- include(partials + '/footer') %>

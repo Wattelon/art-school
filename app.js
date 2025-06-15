@@ -60,7 +60,9 @@ app.use('/admin', adminRoutes);
 app.use('/application', applicationRouter);
 
 app.use((req, res) => {
-    res.status(404).type('text/html').send('<h1>Страница не найдена (404)</h1><a href="/">На главную</a>');
+    res.status(404).render('pages/404', {
+        title: 'Страница не найдена',
+    });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8" />
     <title><%= title || "Школа искусств" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <ul class="navigation">
-            <li><a class="navigation-link" href="/">Главная</a></li>
-            <li><a class="navigation-link" href="/news">Новости</a></li>
-            <li><a class="navigation-link" href="/about">О школе</a></li>
-            <li><a class="navigation-link" href="/programs">Программы</a></li>
-            <li><a class="navigation-link" href="/contacts">Контакты</a></li>
-            <li class="navigation-spacer"></li>
+    <header class="header">
+        <nav class="nav">
+            <ul class="nav__list">
+                <li><a class="nav__link" href="/">Главная</a></li>
+                <li><a class="nav__link" href="/news">Новости</a></li>
+                <li><a class="nav__link" href="/about">О школе</a></li>
+                <li><a class="nav__link" href="/programs">Программы</a></li>
+                <li><a class="nav__link" href="/contacts">Контакты</a></li>
+                <li class="nav__spacer" aria-hidden="true"></li>
 
-            <% if (session.user) { %>
-                <li><%= session.user.email %></li>
-                <% if (session.user?.is_admin) { %>
-                    <li><a class="navigation-link" href="/admin">Админка</a></li>
+                <% if (session.user) { %>
+                    <li class="nav__user-email"><%= session.user.email %></li>
+                    <% if (session.user?.is_admin) { %>
+                        <li><a class="nav__link" href="/admin">Админка</a></li>
+                    <% } %>
+                    <li><a class="nav__link" href="/auth/logout">Выход</a></li>
+                <% } else { %>
+                    <li><a class="nav__link" href="/auth/login">Вход</a></li>
+                    <li><a class="nav__link" href="/auth/register">Регистрация</a></li>
                 <% } %>
-                <li><a class="navigation-link" href="/auth/logout">Выход</a></li>
-            <% } else { %>
-                <li><a class="navigation-link" href="/auth/login">Вход</a></li>
-                <li><a class="navigation-link" href="/auth/register">Регистрация</a></li>
-            <% } %>
-        </ul>
-    </nav>
+            </ul>
+        </nav>
+    </header>

@@ -1,25 +1,44 @@
 <%- include(partials + '/header') %>
 
-<h1>Контакты</h1>
+<main class="contacts-page">
+    <h1 class="contacts-page__title">Контакты</h1>
 
-<section class="contacts">
-    <% contacts.forEach(c => { %>
-        <div class="contact-card">
-            <h2><%= c.title %></h2>
-            <% if (c.phone) { %>
-                <p><strong>Телефон:</strong> <a href="tel:<%= c.phone %>"><%= c.phone %></a></p>
-            <% } %>
-            <% if (c.email) { %>
-                <p><strong>Email:</strong> <a href="mailto:<%= c.email %>"><%= c.email %></a></p>
-            <% } %>
-            <% if (c.social) { %>
-                <p><strong>Соцсети:</strong> <a href="<%= c.social %>" target="_blank"><%= c.social %></a></p>
-            <% } %>
-            <% if (c.address) { %>
-                <p><strong>Адрес:</strong> <%= c.address %></p>
-            <% } %>
-        </div>
-    <% }) %>
-</section>
+    <section class="contacts-page__list contacts-list">
+        <% contacts.forEach(c => { %>
+            <article class="contacts-list__card contact-card" tabindex="0" aria-label="<%= c.title %>">
+                <h2 class="contact-card__title"><%= c.title %></h2>
+
+                <% if (c.phone) { %>
+                    <p class="contact-card__item">
+                        <strong>Телефон:</strong>
+                        <a href="tel:<%= c.phone %>" class="contact-card__link"><%= c.phone %></a>
+                    </p>
+                <% } %>
+
+                <% if (c.email) { %>
+                    <p class="contact-card__item">
+                        <strong>Email:</strong>
+                        <a href="mailto:<%= c.email %>" class="contact-card__link"><%= c.email %></a>
+                    </p>
+                <% } %>
+
+                <% if (c.social) { %>
+                    <p class="contact-card__item">
+                        <strong>Соцсети:</strong>
+                        <a href="<%= c.social %>" target="_blank" rel="noopener noreferrer" class="contact-card__link contact-card__link--social">
+                            <%= c.social %>
+                        </a>
+                    </p>
+                <% } %>
+
+                <% if (c.address) { %>
+                    <p class="contact-card__item">
+                        <strong>Адрес:</strong> <span class="contact-card__text"><%= c.address %></span>
+                    </p>
+                <% } %>
+            </article>
+        <% }) %>
+    </section>
+</main>
 
 <%- include(partials + '/footer') %>

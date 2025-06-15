@@ -1,40 +1,55 @@
 <%- include(partials + '/header') %>
 
-<h1>О нашей школе</h1>
+<main class="about">
+    <h1 class="about__title">О нашей школе</h1>
 
-<section>
-    <h2>Педагогический состав</h2>
-    <ul class="teacher-list">
-        <% teachers.forEach(t => { %>
-            <li>
-                <img src="<%= t.image_url %>" alt="портрет" />
-                <strong><%= t.name %></strong><br/>
-                <em><%= t.bio %></em>
-            </li>
-        <% }) %>
-    </ul>
-</section>
+    <section class="about__section about__teachers">
+        <h2 class="about__section-title">Педагогический состав</h2>
+        <ul class="teacher-list">
+            <% teachers.forEach(t => { %>
+                <li class="teacher-list__item">
+                    <img src="<%= t.image_url %>" alt="Портрет <%= t.name %>" class="teacher-list__image" />
+                    <div class="teacher-list__info">
+                        <strong class="teacher-list__name"><%= t.name %></strong>
+                        <em class="teacher-list__bio"><%= t.bio %></em>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </section>
 
-<section>
-    <h2>Расписание работы</h2>
-    <table class="schedule">
-        <tr><th>День</th><th>Время</th></tr>
-        <% weekSchedule.forEach(schedule => { %>
+    <section class="about__section about__schedule">
+        <h2 class="about__section-title">Расписание работы</h2>
+        <table class="schedule">
+            <thead>
             <tr>
-                <td><%= schedule.dayOfWeek %></td>
-                <td><%= schedule.workingHours %></td>
+                <th class="schedule__header">День</th>
+                <th class="schedule__header">Время</th>
             </tr>
-        <% }) %>
-    </table>
-</section>
+            </thead>
+            <tbody>
+            <% weekSchedule.forEach(schedule => { %>
+                <tr>
+                    <td class="schedule__cell"><%= schedule.dayOfWeek %></td>
+                    <td class="schedule__cell"><%= schedule.workingHours %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    </section>
 
-<section>
-    <h2>Наши достижения</h2>
-    <ul class="achievement-list">
-        <% achievements.forEach(a => { %>
-            <li><strong><%= a.date %></strong>: <%= a.title %> - <%= a.description %></li>
-        <% }) %>
-    </ul>
-</section>
+    <section class="about__section about__achievements">
+        <h2 class="about__section-title">Наши достижения</h2>
+        <ul class="achievement-list">
+            <% achievements.forEach(a => { %>
+                <li class="achievement-list__item">
+                    <strong class="achievement-list__date"><%= a.date %></strong>:
+                    <span class="achievement-list__title"><%= a.title %></span> -
+                    <span class="achievement-list__description"><%= a.description %></span>
+                </li>
+            <% }) %>
+        </ul>
+    </section>
+</main>
 
 <%- include(partials + '/footer') %>

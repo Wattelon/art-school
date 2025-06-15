@@ -1,33 +1,43 @@
 <%- include(partials + '/header') %>
 
-<h1>Программы обучения</h1>
+<main class="admin-list">
+    <h1 class="admin-list__title">Программы обучения</h1>
 
-<a href="/admin/programs/add" class="btn">Добавить программу</a>
+    <div class="admin-list__actions">
+        <a href="/admin/programs/add" class="cta-button">➕ Добавить программу</a>
+    </div>
 
-<table border="1" cellpadding="8" cellspacing="0">
-    <thead>
-    <tr>
-        <th>Название</th>
-        <th>Возраст</th>
-        <th>Действия</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% programs.forEach(p => { %>
-        <tr>
-            <td><%= p.title %></td>
-            <td><%= p.age_group || '—' %></td>
-            <td>
-                <a href="/admin/programs/edit/<%= p.id %>">✏️ Редактировать</a>
-                <form action="/admin/programs/delete/<%= p.id %>" method="POST" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Удалить программу?')">🗑️ Удалить</button>
-                </form>
-            </td>
-        </tr>
-    <% }) %>
-    </tbody>
-</table>
+    <% if (programs.length === 0) { %>
+        <p class="admin-list__empty">Программ пока нет.</p>
+    <% } else { %>
+        <table class="admin-list__table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Возрастная группа</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% programs.forEach(p => { %>
+                <tr>
+                    <td><%= p.title %></td>
+                    <td><%= p.age_group || '—' %></td>
+                    <td>
+                        <a href="/admin/programs/edit/<%= p.id %>">✏️</a>
+                        <form action="/admin/programs/delete/<%= p.id %>" method="POST" class="admin-list__delete-form">
+                            <button type="submit" onclick="return confirm('Удалить программу?')">🗑️</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% } %>
 
-<a href="/admin">← Назад в админку</a>
+    <p class="admin-list__back">
+        <a href="/admin">← Назад в админку</a>
+    </p>
+</main>
 
 <%- include(partials + '/footer') %>

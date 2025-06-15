@@ -1,26 +1,40 @@
 <%- include(partials + '/header') %>
 
-<h1>Новости</h1>
+<main class="main">
+    <section class="news-header">
+        <h1 class="news-header__title">Новости</h1>
 
-<div id="filters">
-    <input type="text" id="filter-title" placeholder="Фильтр по названию..." />
-    <select id="sort-order">
-        <option value="desc">Сначала новые</option>
-        <option value="asc">Сначала старые</option>
-    </select>
-    <button id="reset">Показать все</button>
-</div>
-
-<div class="news-list" id="news-container">
-    <% news.forEach(item => { %>
-        <div class="news-card" data-title="<%= item.title.toLowerCase() %>" data-time="<%= item.created_at %>">
-            <img src="<%= item.image_url %>" alt="обложка" />
-            <h3>
-                <a href="/news/<%= item.id %>"><%= item.title %></a> - <%= item.time %>
-            </h3>
+        <div class="news-header__filters" id="filters">
+            <input
+                    type="text"
+                    id="filter-title"
+                    class="news-header__input"
+                    placeholder="Фильтр по названию..."
+            />
+            <select id="sort-order" class="news-header__select">
+                <option value="desc">Сначала новые</option>
+                <option value="asc">Сначала старые</option>
+            </select>
+            <button id="reset" class="news-header__reset">Показать все</button>
         </div>
-    <% }) %>
-</div>
+    </section>
+
+    <section class="news-grid" id="news-container">
+        <% news.forEach(item => { %>
+            <article
+                    class="news-card"
+                    data-title="<%= item.title.toLowerCase() %>"
+                    data-time="<%= item.created_at %>"
+            >
+                <img class="news-card__image" src="<%= item.image_url %>" alt="Обложка" />
+                <h3 class="news-card__title">
+                    <a href="/news/<%= item.id %>" class="news-card__link"><%= item.title %></a>
+                </h3>
+                <p class="news-card__date"><%= item.time %></p>
+            </article>
+        <% }) %>
+    </section>
+</main>
 
 <script src="/js/news.js"></script>
 

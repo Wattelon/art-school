@@ -1,18 +1,25 @@
 <%- include(partials + '/header') %>
 
-<h1>Редактировать расписание</h1>
+<main class="admin-schedule">
+    <h1 class="admin-schedule__title">Редактировать расписание</h1>
 
-<form action="/admin/schedule" method="POST">
-    <% const days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
-    <% const labels = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']; %>
-    <% for (let i = 0; i < days.length; i++) { %>
-        <label><%= labels[i] %>:<br>
-            <textarea name="<%= days[i] %>" rows="3" cols="60"><%= schedule[days[i]] || '' %></textarea>
-        </label><br><br>
-    <% } %>
-    <button type="submit">Сохранить</button>
-</form>
+    <form action="/admin/schedule" method="POST" class="admin-schedule__form">
+        <% const days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
+        <% const labels = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']; %>
 
-<a href="/admin">← Назад</a>
+        <% for (let i = 0; i < days.length; i++) { %>
+            <label class="admin-schedule__label">
+                <span class="admin-schedule__day"><%= labels[i] %>:</span>
+                <textarea name="<%= days[i] %>" rows="3"><%= schedule[days[i]] || '' %></textarea>
+            </label>
+        <% } %>
+
+        <button type="submit" class="cta__button">Сохранить</button>
+    </form>
+
+    <p class="admin-schedule__back">
+        <a href="/admin">← Назад</a>
+    </p>
+</main>
 
 <%- include(partials + '/footer') %>

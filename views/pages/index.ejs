@@ -1,23 +1,30 @@
 <%- include(partials + '/header') %>
 
-<main>
+<main class="main">
     <section class="intro">
-        <h1>Добро пожаловать в Школу Искусств</h1>
-        <p>Развивайте свои творческие способности под руководством профессионалов!</p>
+        <div class="intro__container">
+            <h1 class="intro__title">Добро пожаловать в Школу Искусств</h1>
+            <p class="intro__subtitle">
+                Развивайте свои творческие способности под руководством профессионалов!
+            </p>
+        </div>
     </section>
 
     <section class="cta">
-        <a href="/application" class="cta-button">Поступить</a>
+        <a href="/application" class="cta__button">Поступить</a>
     </section>
 
     <section class="latest-news">
-        <h2>Последние новости</h2>
-        <div class="news-list">
+        <h2 class="latest-news__title">Последние новости</h2>
+        <div class="latest-news__list">
             <% news.forEach(item => { %>
-                <div class="news-item">
-                    <img src="<%= item.image_url %>" alt="Обложка" />
-                    <h3><a href="/news/<%= item.id %>"><%= item.title %></a> - <%= item.time %></h3>
-                </div>
+                <article class="news-card">
+                    <img class="news-card__image" src="<%= item.image_url %>" alt="Обложка" />
+                    <h3 class="news-card__title">
+                        <a href="/news/<%= item.id %>" class="news-card__link"><%= item.title %></a>
+                    </h3>
+                    <p class="news-card__date"><%= item.time %></p>
+                </article>
             <% }) %>
         </div>
     </section>

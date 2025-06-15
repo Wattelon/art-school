@@ -1,19 +1,31 @@
 <%- include(partials + '/header') %>
 
-<h1>Форма подачи заявки</h1>
+<main class="application-page">
+    <h1 class="application-page__title">Подача заявки</h1>
 
-<% if (error) { %>
-    <p style="color: red;"><%= error %></p>
-<% } %>
+    <% if (error) { %>
+        <p class="application-page__error" role="alert"><%= error %></p>
+    <% } %>
 
-<form action="/application" method="POST">
-    <label>ФИО: <input type="text" name="name" required></label><br>
-    <label>Возраст: <input type="number" name="age" required></label><br>
-    <label>Телефон: <input type="tel" name="phone"></label><br>
-    <label>Email: <input type="email" name="email"></label><br>
-    <button type="submit">Отправить</button>
-</form>
+    <form action="/application" method="POST" class="application-form" novalidate>
+        <label class="application-form__label" for="name">ФИО</label>
+        <input id="name" name="name" type="text" class="application-form__input" required>
 
-<a href="/programs">← Назад к программам</a>
+        <label class="application-form__label" for="age">Возраст</label>
+        <input id="age" name="age" type="number" class="application-form__input" required>
+
+        <label class="application-form__label" for="phone">Телефон</label>
+        <input id="phone" name="phone" type="tel" class="application-form__input">
+
+        <label class="application-form__label" for="email">Email</label>
+        <input id="email" name="email" type="email" class="application-form__input">
+
+        <button type="submit" class="cta__button application-form__submit">Отправить заявку</button>
+    </form>
+
+    <p class="application-page__back">
+        <a href="/programs">← Назад к программам</a>
+    </p>
+</main>
 
 <%- include(partials + '/footer') %>
