@@ -9,13 +9,17 @@ router.get('/', async (req, res) => {
         news.forEach(row => {
             row.time = moment(row.created_at).format('DD.MM.YYYY');
         });
-        res.status(200).render('pages/index', {
+        res.status(200).type('html').render('pages/index', {
             title: 'Школа Искусств',
             news
         });
     } catch (error) {
         console.error('Ошибка при получении новостей:', error);
-        res.status(500).send('Внутренняя ошибка сервера');
+        res.status(500).type('html').render('pages/error', {
+            title: 'Ошибка сервера',
+            code: 500,
+            text: 'Произошла ошибка на стороне сервера'
+        });
     }
 });
 

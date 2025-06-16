@@ -1,9 +1,9 @@
 <%- include(partials + '/header') %>
 
 <main class="main">
-    <h1 class="error-page__code">404</h1>
-    <p class="error-page__message">Страница не найдена</p>
-    <p class="error-page__info">Возможно, указан некорректный адрес или страница была удалена.</p>
+    <h1 class="error-page__code"><%= code %></h1>
+    <p class="error-page__message"><%= title %></p>
+    <p class="error-page__info"><%= text %></p>
     <div class="cta">
         <a href="/" class="cta__button error-page__button" aria-label="Вернуться на главную">Вернуться на главную</a>
     </div>

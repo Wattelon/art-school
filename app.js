@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const url = require('url');
-const logChangeMiddleware = require('./middleware/logger');
+const logger = require('./middleware/logger');
 
 const indexRouter = require('./routes/index');
 const newsRouter = require('./routes/news');
@@ -30,7 +30,7 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(logChangeMiddleware);
+app.use(logger);
 
 app.use((req, res, next) => {
     res.locals.session = req.session;
@@ -60,8 +60,10 @@ app.use('/admin', adminRoutes);
 app.use('/application', applicationRouter);
 
 app.use((req, res) => {
-    res.status(404).render('pages/404', {
+    res.status(404).type('html').render('pages/error', {
         title: 'Страница не найдена',
+        code: 404,
+        text: 'Возможно, указан некорректный адрес или страница была удалена'
     });
 });
 

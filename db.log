@@ -9,3 +9,11 @@
 [2025-06-15T10:55:50.183Z] POST /application - {"name":"1","age":"","phone":"2","email":""}
 [2025-06-15T10:55:54.495Z] POST /application - {"name":"1","age":"2","phone":"2","email":""}
 [2025-06-15T10:56:38.183Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}
+[2025-06-16T10:00:12.412Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}
+[2025-06-16T10:00:28.818Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}
+[2025-06-16T10:00:41.268Z] POST /reactions/1 - {"type":"dislike"}
+[2025-06-16T10:00:43.873Z] POST /reactions/1 - {"type":"like"}
+[2025-06-16T10:00:49.386Z] POST /reactions/1 - {"type":"dislike"}
+[2025-06-16T10:00:50.475Z] POST /reactions/1 - {"type":"like"}
+[2025-06-16T16:27:50.014Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}
+[2025-06-16T16:54:58.925Z] POST /auth/login - {"email":"mr.smayl546@gmail.com","password":"1234"}

@@ -11,10 +11,14 @@ router.get('/', async (req, res) => {
         news.forEach(row => {
             row.time = moment(row.created_at).format('DD.MM.YYYY');
         });
-        res.status(200).render('pages/news/list', { title: 'Новости', news });
+        res.status(200).type('html').render('pages/news/list', { title: 'Новости', news });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Ошибка получения новостей');
+        res.status(500).type('html').render('pages/error', {
+            title: 'Ошибка сервера',
+            code: 500,
+            text: 'Произошла ошибка на стороне сервера'
+        });
     }
 });
 
@@ -32,7 +36,11 @@ router.get('/:id', async (req, res) => {
             [newsId]
         );
 
-        if (!news) return res.status(404).send('Новость не найдена');
+        if (!news) return res.status(404).type('html').render('pages/error', {
+            title: 'Страница не найдена',
+            code: 404,
+            text: 'Возможно, указан некорректный адрес или страница была удалена'
+        });
 
         let reaction = null;
 
@@ -44,7 +52,7 @@ router.get('/:id', async (req, res) => {
             reaction = react?.type || null;
         }
 
-        res.status(200).render('pages/news/details', {
+        res.status(200).type('html').render('pages/news/details', {
             title: news.title,
             news,
             reaction,
@@ -54,7 +62,11 @@ router.get('/:id', async (req, res) => {
         });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Ошибка загрузки новости');
+        res.status(500).type('html').render('pages/error', {
+            title: 'Ошибка сервера',
+            code: 500,
+            text: 'Произошла ошибка на стороне сервера'
+        });
     }
 });
 

@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
             achievement.date = moment(achievement.date).format('DD.MM.YYYY');
         })
 
-        res.status(200).render('pages/about', {
+        res.status(200).type('html').render('pages/about', {
             title: 'О школе',
             teachers,
             achievements,

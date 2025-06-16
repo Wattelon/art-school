@@ -3,7 +3,7 @@ const path = require('path');
 
 const logPath = path.join(__dirname, '../db.log');
 
-function logChangeMiddleware(req, res, next) {
+function logger(req, res, next) {
     const methodsToLog = ['POST', 'PUT', 'DELETE'];
 
     if (methodsToLog.includes(req.method)) {
@@ -26,4 +26,4 @@ function logChangeMiddleware(req, res, next) {
     next();
 }
 
-module.exports = logChangeMiddleware;
+module.exports = logger;
